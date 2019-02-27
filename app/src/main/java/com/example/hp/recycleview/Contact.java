@@ -5,9 +5,9 @@ public class Contact {
     private String mName;
     private boolean mOnline;
 
-    public Contact(String name, boolean online) {
-        mName = name;
-        mOnline = online;
+    public Contact(String mName, boolean mOnline) {
+        this.mName = mName;
+        this.mOnline = mOnline;
     }
 
     public String getName() {
@@ -24,7 +24,7 @@ public class Contact {
         ArrayList<Contact> contacts = new ArrayList<Contact>();
 
         for (int i = 1; i <= numContacts; i++) {
-            contacts.add(new Contact("Person " + ++lastContactId, i <= numContacts / 2));
+            contacts.add(new Contact("PC  " + ++lastContactId, i <= numContacts / 2));
         }
 
         return contacts;

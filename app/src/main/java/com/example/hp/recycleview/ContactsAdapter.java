@@ -23,28 +23,27 @@ public class ContactsAdapter extends
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Context context = viewGroup.getContext();
+        Context context= viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_contact, parent, false);
-
-        // Return a new holder instance
+        View contactView = inflater.inflate(R.layout.item_contact,viewGroup,false);
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
+
+
     }
 
     @Override
-    public void onBindViewHolder(ContactsAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ContactsAdapter.ViewHolder viewHolder, int i) {
         // Get the data model based on position
-        Contact contact = mContacts.get(position);
-
-        // Set item views based on your views and data model
+        Contact itemContact = mContacts.get(i);
         TextView textView = viewHolder.nameTextView;
-        textView.setText(contact.getName());
-        Button button = viewHolder.messageButton;
-        button.setText(contact.isOnline() ? "Hidup" : "Offline");
-        button.setEnabled(contact.isOnline());
+        textView.setText(itemContact.getName());
+        textView.getCurrentTextColor();
+
+        Button buttonContact = viewHolder.messageButton;
+        buttonContact.setText(itemContact.isOnline()? "Hidup" : "Mati");
+        buttonContact.setEnabled(itemContact.isOnline());
+
     }
 
     @Override
@@ -54,26 +53,21 @@ public class ContactsAdapter extends
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-            // Your holder should contain a member variable
-            // for any view that will be set as you render a row
-            public TextView nameTextView;
-            public Button messageButton;
-            private List<Contact> mContacts;
 
 
+        public TextView nameTextView;
+        public Button messageButton;
 
 
+        public ViewHolder(View itemView) {
 
-            // We also create a constructor that accepts the entire item row
-            // and does the view lookups to find each subview
-            public ViewHolder(View itemView) {
-                // Stores the itemView in a public final member variable that can be used
-                // to access the context from any ViewHolder instance.
-                super(itemView);
+            super(itemView);
 
-                nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-                messageButton = (Button) itemView.findViewById(R.id.message_button);
-            }
+            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            messageButton = (Button) itemView.findViewById(R.id.message_button);
+
         }
+
     }
-}
+    }
+
